@@ -1,0 +1,93 @@
+# Single Source of Truth — Visual & UI Contract
+# Hangzhou low-altitude drone operations, keeping the original aerospace-console visual system.
+
+project:
+  id: hangzhou-low-altitude-drone-lab
+  title: 杭州·低空智航实验室 | Drone Operations Lab 8-in-1
+  status: approved
+  reference_resolution: 1920x1080
+  scaling_policy: expand-anchored
+  min_canvas_viewport_ratio: 0.78
+  map_data_policy: illustrative teaching map; not GIS, live airspace, or operational flight data
+
+safe_area:
+  top_bar_height_px: 58
+  edge_inset_px: 14
+  modal_margin_px: 20
+
+visual_language:
+  theme: Hangzhou Low-Altitude Operations & Precision Drone Telemetry
+  lighting_direction: top-left rim light (315deg)
+  materials:
+    - dark anodized cockpit panels
+    - frosted low-altitude operations HUD glass (backdrop blur 12px)
+    - restrained Hangzhou river and city-block map geometry
+    - luminous drone silhouettes, flight paths, mission markers, and telemetry
+  map_visualization:
+    city_map: schematic and recognizable, never presented as a navigable or authoritative map
+    flight_path: cyan dashed line with numbered waypoints
+    destination: gold mission marker
+    safe_status: green marker paired with label
+    restricted_or_hazard_zone: red boundary paired with icon and text label
+
+palette:
+  space_void: "#030711"
+  space_deep: "#07101F"
+  surface_glass: "rgba(8, 17, 32, 0.84)"
+  surface_elevated: "linear-gradient(165deg, rgba(15, 28, 50, 0.97), rgba(7, 14, 27, 0.98))"
+  surface_card: "linear-gradient(155deg, rgba(14, 26, 46, 0.88), rgba(7, 14, 28, 0.94))"
+  border_subtle: "rgba(130, 195, 255, 0.22)"
+  border_strong: "rgba(0, 224, 255, 0.62)"
+  text_primary: "#F0F6FF"
+  text_secondary: "#A8C2E0"
+  text_muted: "#6986A8"
+  accent_cyan: "#00D8FF"
+  accent_cyan_glow: "rgba(0, 216, 255, 0.34)"
+  accent_gold: "#F5A623"
+  accent_gold_glow: "rgba(245, 166, 35, 0.32)"
+  status_nominal: "#22D37A"
+  status_caution: "#F5A623"
+  status_critical: "#FF4757"
+  status_info: "#00D8FF"
+  focus_ring: "#FDE047"
+
+typography:
+  display: "'Chakra Petch', 'Noto Sans SC', system-ui, sans-serif"
+  sans: "'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif"
+  mono: "'JetBrains Mono', 'Cascadia Code', Consolas, monospace"
+  numeric_variant: tabular-nums
+  sizes:
+    title_lg: 28px
+    title_md: 20px
+    hud_label: 12px
+    hud_value: 18px
+    body: 14px
+    button: 14px
+  contrast_minimum: 4.5
+
+geometry:
+  chamfer_sm: 6px
+  chamfer_md: 10px
+  radius_sm: 4px
+  radius_md: 8px
+  radius_lg: 12px
+  stroke_thin: 1px
+  stroke_accent: 2px
+  button_min_height: 36px
+  touch_target_min: 40px
+
+interaction_states:
+  default: "opacity 1, border_subtle"
+  hover: "border_strong, lift -1px, glow accent_cyan_glow"
+  active: "scale 0.98, inner shadow"
+  focus_visible: "2px solid focus_ring, offset 2px (distinct from hover)"
+  selected: "accent_cyan border + translucent cyan fill"
+  disabled: "opacity 0.42, cursor not-allowed"
+  status_redundancy: "Always pair color with icon + text label (color-blind safe)"
+
+motion:
+  fast_ms: 140
+  normal_ms: 240
+  modal_ms: 280
+  easing: "cubic-bezier(0.22, 1, 0.36, 1)"
+  reduced_motion: "Respect prefers-reduced-motion: reduce"

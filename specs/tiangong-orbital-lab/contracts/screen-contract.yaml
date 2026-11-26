@@ -1,0 +1,45 @@
+# Screen Stack & HUD Contract — Hangzhou Low-Altitude Drone Lab
+# Preserve the established screen-stack and event-driven HUD architecture.
+
+screen_stack:
+  base_screens:
+    - id: hub
+      name: 杭州低空无人机任务中枢 (Hangzhou Drone Operations Hub)
+      primary_action: 点击城市示意地图上的任务点或下方任务卡进入八类无人机任务
+      focus_on_open: first-module-button
+    - id: game
+      name: 无人机任务视口 (Active Drone Mission 01–08)
+      primary_action: 按任务简报操作飞行、航线、航测、巡检、救援、编队、物流或调度机制
+      focus_on_open: game-canvas
+  modal_overlays:
+    - id: briefing
+      name: 任务简报与操作引导 (3-step skippable)
+      trap_focus: true
+      dismiss_on_esc: true
+    - id: codex
+      name: 无人机与城市低空科普档案 (24 Entries)
+      trap_focus: true
+      dismiss_on_esc: true
+    - id: result
+      name: 任务结算与真实无人机原理对照卡
+      trap_focus: true
+      dismiss_on_esc: true
+
+persistent_shell:
+  - component: QuickDockBar
+    position: top-anchored (58px height)
+    features:
+      - Hangzhou mission hub home button (Esc)
+      - 8 mission quick-switch pills with live star/status badges (keys 1-8)
+      - Total mission stars counter & low-altitude network readiness indicator
+      - Drone and AI science codex trigger (Tab)
+      - Audio toggle (M) & Fullscreen toggle (F)
+
+game_hud_contract:
+  update_model: event-driven (HudKit.setMetrics / HudKit.updateMetric / HudKit.pushToast)
+  zones:
+    top_left: Mission header + Level switcher (L1/L2/L3) + Objective badge
+    top_right: Compact Flight Telemetry Strip (battery, mission progress, wind, flight safety)
+    bottom_left: Flight/AI principle overlay toggle (V) + Controls hint chip + Restart (R)
+    bottom_right: Contextual Drone Science Toast (non-blocking, auto-dismiss)
+    bottom_center: Optional mission-specific tactile control deck (touch & mouse friendly)
